@@ -73,3 +73,5 @@ function calcularPromiedo (array){
     console.log(sumatoriaDeNotas/array.length)
 
 }
+
+//PROBANDO EL COMMIT Y VIENDO SI ESTÁ TODO OK
