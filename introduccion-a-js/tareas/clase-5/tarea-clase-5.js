@@ -17,11 +17,32 @@ $botonCalcular.onclick = function()
 }
 */
 
+
+
 //TAREA: completar tareas/clase-5/index.html para que incluya tarea-clase-5.js
 //TAREA: crear un formulario donde un usuario pueda ingresar su salario anual.
 //cuando el usuario haga click en el botón "calcular", mostrar el salario mensual
 // en una caja de texto deshabilitada. --> <input type="text" disabled id="salario-mensual"/>
 
+//console.log(document.querySelector("h1").textContent);
+
+console.log("Tarea 5");
+
+function calcularSalarioMensual(salarioAnual){
+  return salarioAnual / 12;
+}
+
+const $calcularSalarioMensual = document.querySelector("#calcular-salario-mensual");
+
+$calcularSalarioMensual.onclick = function (){
+  const salarioAnual = Number(document.querySelector("#Salario-Anual").value);
+  const salarioMensual = calcularSalarioMensual(salarioAnual);
+document.querySelector("#Salario-Mensual").value = salarioMensual
+  
+
+  
+  return false;
+}
 //TAREA: En otro archivo html (no Index) y otro archivo js (no tarea-clase-5.js),
 // creá un formulario que capture el primer nombre, segundo nombre, apellido/s y edad del usuario
 // también vamos a crear un <h1> que diga Bienvenido!
@@ -47,7 +68,7 @@ Ejemplo form:
 // 2 horas, 38 minutos y 20 segundos, vamos a rellenar 3 campos de texto con
 // cada dato.
 // al apretar el botón "Calcular tiempo total", debe mostrar en un
-// <strong> pre-creado el tiempo total de los videos.
+// <strong> pre-creado el tiempo total de los videos. 
 
 //TAREA: En otro archivo distinto,
 // Crear una lista de <ol> y <li> que contengan sólo números.

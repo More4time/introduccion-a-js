@@ -123,6 +123,8 @@
 // TAREA: Ahora te toca a vos! — Obtené la etiqueta h1 de la página y guardala en una variable
 //       variable llamada nuestroTitulo.
 //       Utilizá console.log para ver lo que obtuviste!
+ const nuestroTitulo = document.querySelector("h1")
+ console.log(nuestroTitulo)
 
 
 
@@ -145,6 +147,8 @@
 */
 
 // TAREA: Obtené todos los elementos <li> de la página en una variable llamada mediaLinks.
+const mediaLinks = document.querySelectorAll("li");
+console.log(mediaLinks)
 
 
 
@@ -154,6 +158,8 @@
 // TAREA: Ahora utilizá console.log para ver la cantidad de 
 // elementos li que hay con mediaLinks.length
 
+console.log(mediaLinks.length)
+
 
 
 
@@ -161,6 +167,10 @@
 
 // TAREA: ¿Te acordás de los bucles del nivel 2? Usando lo que sabés de ellos, realizá iteraciones
 //      sobre cada item de mediaLinks y mostralos en pantalla con console.log
+
+for(let i = 0; i<mediaLinks.length ; i++){
+    console.log(mediaLinks[i]);
+}
 
 
 
@@ -183,6 +193,9 @@
 
 // TAREA: Obtené el contenido de nuestro elemento 'h1'
 // y utilizá console.log para mostrarlo.
+let contenidoH1 = nuestroTitulo.textContent
+console.log( contenidoH1)
+
 
 
 
@@ -203,7 +216,11 @@
     // Adiviná que es lo que vamos a ver en la página y en la consola!
 */
 
+
 // TAREA: Hagamos un nuevo título! Cambiá el contenido de nuestro 'h1' y ponele lo que quieras.
+
+nuestroTitulo.textContent = "Buenas noches America";
+console.log(nuestroTitulo);
 
 
 
@@ -223,6 +240,7 @@
 
 // TAREA: Actualizá el valor del atributo 'src' de nuestra etiqueta 'img' a "img/kittens.jpeg".
 
+// document.querySelector("img").src = "img/kittens.jpeg";
 
 
 
@@ -248,6 +266,8 @@
 
 // Tarea: Obtené cualquier elemento de la página y cambiale algunos estilos.
 
+// nuestroTitulo.style.backgroundColor = "Green"
+// nuestroTitulo.style.frontSize = "100px"
 
 
 
@@ -260,7 +280,7 @@
     El objeto "document" también nos da maneras de crear nodos desde cero.
 
     document.createElement('div'); // crea un nuevo elemento llamado 'div'.
-    document.createTextNode('foobar'); // crea un nuevo texto que contiene 'foobar'
+    document.createTextNode('foobar'); // crea un nuevo texto que contiene 'foobar' //<p></p>
     existingNode.appendChild(newNode); // agrega un newNode al final de existingNode.
 
     Ejemplo:
@@ -279,7 +299,9 @@
 // P.S. También les podés dar estilos al nuevo nodo que creaste.
 
 
-
+const nene = document.createElement("img");
+nene.src = "kittens.jpeg";
+document.querySelector("header").appendChild(nene);
 
 
 
