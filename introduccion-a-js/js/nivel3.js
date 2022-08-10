@@ -268,7 +268,7 @@ console.log(nuestroTitulo);
 
 // nuestroTitulo.style.backgroundColor = "Green"
 // nuestroTitulo.style.frontSize = "100px"
-
+//document.querySelector("img").src = "img/TKB.jpg"
 
 
 
@@ -298,9 +298,8 @@ console.log(nuestroTitulo);
 //
 // P.S. También les podés dar estilos al nuevo nodo que creaste.
 
-
 const nene = document.createElement("img");
-nene.src = "kittens.jpeg";
+nene.src = "img/TKB.jpg";
 document.querySelector("header").appendChild(nene);
 
 
