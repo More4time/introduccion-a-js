@@ -50,6 +50,10 @@ document.querySelector("#Salario-Mensual").value = salarioMensual
 // mostrar toda la información junta en un campo de texto
 // Y va a cambiar el <h1> para decir "Bienvenido, nombreDeUsuario"!
 
+//Por arrancar la tarea 5
+
+// Testeando el querido branch
+
 /*
 Ejemplo form:
   <form id="entrada-bar" onsubmit="return false;">
