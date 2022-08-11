@@ -124,7 +124,10 @@
 //       variable llamada nuestroTitulo.
 //       Utilizá console.log para ver lo que obtuviste!
  const nuestroTitulo = document.querySelector("h1")
- console.log(nuestroTitulo)
+ console.log(nuestroTitulo);
+ console.log(nuestroTitulo.innerText);
+ nuestroTitulo.innerText = "Argentina Programa"
+
 
 
 
