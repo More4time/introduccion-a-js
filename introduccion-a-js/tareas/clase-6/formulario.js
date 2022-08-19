@@ -1,161 +1,94 @@
 
 
-/*
-TAREA: Empezar preguntando cuánta gente hay en el grupo familiar.
-Crear tantos inputs+labels como gente haya para completar la edad de cada integrante.
-Al hacer click en "calcular", mostrar en un elemento pre-existente la mayor edad, la menor edad y el promedio del grupo familiar.
+document.querySelector('#siguiente-paso').onclick = function(event) {
+  const $cantidadIntegrantes = document.querySelector('#cantidad-integrantes');
+  const cantidadIntegrantes = Number($cantidadIntegrantes.value);
 
-Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuevamente, borrando los inputs ya creados (investigar cómo en MDN).
-*/
+  borrarIntegrantesAnteriores();
+  crearIntegrantes(cantidadIntegrantes);
 
+  event.preventDefault();
+};
 
-/*
-TAREA:
-Crear una interfaz que permita agregar ó quitar (botones agregar y quitar) inputs+labels para completar el salario anual de cada integrante de la familia que trabaje.
-Al hacer click en "calcular", mostrar en un elemento pre-existente el mayor salario anual, menor salario anual, salario anual promedio y salario mensual promedio.
+document.querySelector('#calcular').onclick = function(event) {
+  const numeros = obtenerEdadesIntegrantes();
+  mostrarEdad('mayor', obtenerMayorNumero(numeros));
+  mostrarEdad('menor', obtenerMenorNumero(numeros));
+  mostrarEdad('promedio', obtenerPromedio(numeros));
+  mostrarResultados();
 
-Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como 0).
-*/
+  event.preventDefault();
+};
 
-console.log("PRUEBA FORMULARIO")
+document.querySelector('#resetear').onclick = resetear;
 
-//Cuando le hagan click al boton siguiente se ejecutará la función event
-document.querySelector("#Siguiente").onclick = function(event){
-    const $integrantes = document.querySelector("#integrantes");
-    const integrantes = Number($integrantes.value);
-
-    //borrarIntegrantesAnteriores();
-    crearIntegrantes(integrantes)
-
-    event.preventDefault();
-
+function borrarIntegrantesAnteriores() {
+  const $integrantes = document.querySelectorAll('.integrante');
+  for (let i = 0; i < $integrantes.length; i++) {
+    $integrantes[i].remove();
+  }
 }
 
-function crearIntegrantes(integrantes){
+function crearIntegrantes(cantidadIntegrantes) {
 
+  if (cantidadIntegrantes > 0) {
+    mostrarBotonCalculo();
+  } else {
+    resetear();
+  }
+
+  for (let i = 0; i < cantidadIntegrantes; i++) {
+    crearIntegrante(i);
+  }
 }
 
+function crearIntegrante(indice) {
+  const $div = document.createElement('div');
+  $div.className = 'integrante';
 
-function crearIntegrantes(integrantes){
-    if (integrantes > 0){
-        mostrarBotonCalculo()
-    }
+  const $label = document.createElement('label');
+  $label.textContent = 'Edad del integrante #: ' + (indice + 1);
+  const $input = document.createElement('input');
+  $input.type = 'number';
 
+  $div.appendChild($label);
+  $div.appendChild($input);
+
+  const $integrantes = document.querySelector('#integrantes');
+  $integrantes.appendChild($div);
 }
 
+function resetear() {
+  borrarIntegrantesAnteriores();
+  ocultarBotonCalculo();
+  ocultarResultados();
+}
 
+function ocultarBotonCalculo() {
+  document.querySelector('#calcular').className = 'oculto';
+}
 
+function mostrarBotonCalculo() {
+  document.querySelector('#calcular').className = '';
+}
 
+function ocultarResultados() {
+  document.querySelector('#analisis').className = 'oculto';
+}
 
+function mostrarResultados() {
+  document.querySelector('#analisis').className = '';
+}
 
+function mostrarEdad(tipo, valor) {
+  document.querySelector(`#${tipo}-edad`).textContent = valor;
+}
 
-
-
-/*document.querySelector('#siguiente-paso').onclick = function(event) {
-    const $cantidadIntegrantes = document.querySelector('#cantidad-integrantes');
-    const cantidadIntegrantes = Number($cantidadIntegrantes.value);
-  
-    borrarIntegrantesAnteriores();
-    crearIntegrantes(cantidadIntegrantes);
-  
-    event.preventDefault();
-  };
-  
-  document.querySelector('#calcular').onclick = function(event) {
-    const numeros = obtenerEdadesIntegrantes();
-    mostrarEdad('mayor', obtenerMayorNumero(numeros));
-    mostrarEdad('menor', obtenerMenorNumero(numeros));
-    mostrarEdad('promedio', obtenerPromedio(numeros));
-    mostrarResultados();
-  
-    event.preventDefault();
-  };
-  
-  document.querySelector('#resetear').onclick = resetear;
-  
-  function borrarIntegrantesAnteriores() {
-    const $integrantes = document.querySelectorAll('.integrante');
-    for (let i = 0; i < $integrantes.length; i++) {
-      $integrantes[i].remove();
-    }
+function obtenerEdadesIntegrantes() {
+  const $integrantes = document.querySelectorAll('.integrante input');
+  const edades = [];
+  for (let i = 0; i < $integrantes.length; i++) {
+    edades.push(Number($integrantes[i].value));
   }
-  
-  function crearIntegrantes(cantidadIntegrantes) {
-  
-    if (cantidadIntegrantes > 0) {
-      mostrarBotonCalculo();
-    } else {
-      resetear();
-    }
-  
-    for (let i = 0; i < cantidadIntegrantes; i++) {
-      crearIntegrante(i);
-    }
-  }
-  
-  function crearIntegrante(indice) {
-    const $div = document.createElement('div');
-    $div.className = 'integrante';
-  
-    const $label = document.createElement('label');
-    $label.textContent = 'Edad del integrante #: ' + (indice + 1);
-    const $input = document.createElement('input');
-    $input.type = 'number';
-  
-    $div.appendChild($label);
-    $div.appendChild($input);
-  
-    const $integrantes = document.querySelector('#integrantes');
-    $integrantes.appendChild($div);
-  }
-  
-  function resetear() {
-    borrarIntegrantesAnteriores();
-    ocultarBotonCalculo();
-    ocultarResultados();
-  }
-  
-  function ocultarBotonCalculo() {
-    document.querySelector('#calcular').className = 'oculto';
-  }
-  
-  function mostrarBotonCalculo() {
-    document.querySelector('#calcular').className = '';
-  }
-  
-  function ocultarResultados() {
-    document.querySelector('#analisis').className = 'oculto';
-  }
-  
-  function mostrarResultados() {
-    document.querySelector('#analisis').className = '';
-  }
-  
-  function mostrarEdad(tipo, valor) {
-    document.querySelector(`#${tipo}-edad`).textContent = valor;
-  }
-  
-  function obtenerEdadesIntegrantes() {
-    const $integrantes = document.querySelectorAll('.integrante input');
-    const edades = [];
-    for (let i = 0; i < $integrantes.length; i++) {
-      edades.push(Number($integrantes[i].value));
-    }
-    return edades;
-  }
-  
-  /*
-  TAREA:
-  Crear una interfaz que permita agregar ó quitar (botones agregar y quitar) inputs+labels para completar el salario anual de cada integrante de la familia que trabaje.
-  Al hacer click en "calcular", mostrar en un elemento pre-existente el mayor salario anual, menor salario anual, salario anual promedio y salario mensual promedio.
-  
-  Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como 0).
-  */
-  
-
-  //TAREA: En otro archivo html (no Index) y otro archivo js (no tarea-clase-5.js),
-// creá un formulario que capture el primer nombre, segundo nombre, apellido/s y edad del usuario
-// también vamos a crear un <h1> que diga Bienvenido!
-// vas a crear un botón de acción que una vez que lo apretás, va a
-// mostrar toda la información junta en un campo de texto
-// Y va a cambiar el <h1> para decir "Bienvenido, nombreDeUsuario"!
+  return edades;
+}
